@@ -9,6 +9,7 @@ import os
 import cv2
 import numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt
 
 import torch
 from torch.nn import functional as F
@@ -196,9 +197,22 @@ class Cityscapes(BaseDataset):
         return palette
     
     def deal_res(self, pred):
-        pred = (pred.astype(float) / 11)
-        pred[pred > 0.] = random.random()
-        cv2.GaussianBlur()
+        pred = pred / 11
+        # .astype(float)
+
+        rand_arr = np.random.rand(pred.shape[0], pred.shape[1]) * 0.5 + 0.5
+        pred[pred == 1] = rand_arr[pred == 1]
+
+        rand_arr_2 = np.random.rand(pred.shape[0], pred.shape[1]) * 0.1 + 0.3
+        pred[pred < 0.1] = rand_arr_2[pred < 0.1]
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (47,47))
+        # pred = cv2.dilate(pred.copy(), kernel, 25)
+        pred = cv2.erode(pred.copy(), kernel, 25)
+        pred=cv2.blur(pred,(31, 31))
+        pred=cv2.blur(pred,(11, 11))
+        pred=cv2.blur(pred,(5, 5))
+        pred=cv2.blur(pred,(3, 3))
+        pred[0][0]=0
         return pred
 
 
@@ -208,6 +222,8 @@ class Cityscapes(BaseDataset):
         for i in range(preds.shape[0]):
             pred = self.convert_label(preds[i], inverse=True)
             pred = self.deal_res(pred)
+            plt.imshow(pred)
+            plt.savefig(os.path.join(sv_path, name[i]+'_show.png'))
             cv2.imwrite(os.path.join(sv_path, name[i]+'.png'), pred*255)
 
         

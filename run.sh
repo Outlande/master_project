@@ -1,8 +1,7 @@
-tum_folder="/home/levi/master_project/datasets_tum/rgbd_dataset_freiburg3_walking_halfsphere/"
-
 conda activate dsfeat
 
-rm -r results/
+rm -r /home/levi/master_project/datasets_tum/results
+mkdir -p /home/levi/master_project/datasets_tum/results
 
 # iffdetector
 rm -r /home/levi/master_project/datasets_tum/results/detect_results/
