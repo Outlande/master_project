@@ -758,7 +758,7 @@ void test_detector_folder(char *datacfg, char *cfgfile, char *weightfile, char *
         }
         only_name[s-4] = '\0';
     
-        char save_img[256] = "/home/levi/master_project/datasets/results/detect_results/";
+        char save_img[256] = "/home/levi/master_project/datasets_tum/results/detect_results/";
         int i = 0;
         int j = strlen(save_img);
         while (only_name[i] != '\0')
@@ -772,7 +772,7 @@ void test_detector_folder(char *datacfg, char *cfgfile, char *weightfile, char *
         free_image(im);
         free_image(sized);
 
-        char save_txt[256] = "/home/levi/master_project/datasets/results/detect_results/";
+        char save_txt[256] = "/home/levi/master_project/datasets_tum/results/detect_results/";
         i = 0;
         j = strlen(save_txt);
         while (only_name[i] != '\0')

@@ -3,14 +3,14 @@ CUDNN:
   DETERMINISTIC: false
   ENABLED: true
 GPUS: (0,)
-OUTPUT_DIR: '/home/levi/master_project/datasets/results/dsfeat_results/'
+OUTPUT_DIR: '/home/levi/master_project/datasets_tum/results/dsfeat_results/'
 LOG_DIR: 'log'
 WORKERS: 4
 PRINT_FREQ: 10
 
 DATASET:
   DATASET: cityscapes
-  ROOT: /home/levi/master_project/datasets/rgbd_dataset_freiburg3_walking_halfsphere/
+  ROOT: /home/levi/master_project/datasets_tum/rgbd_dataset_freiburg3_walking_halfsphere/
   TEST_SET: 'list/test.lst'
   TRAIN_SET: 'list/test.lst'
   NUM_CLASSES: 19
