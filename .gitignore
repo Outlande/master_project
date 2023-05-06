@@ -1,0 +1,14 @@
+.vscode
+__pycache__/
+*.py[co]
+datasets/
+log/
+output/
+pretrained_models
+scripts/
+detail-api/
+data/list
+*.pb
+*.pth
+*.weights
+variables/
